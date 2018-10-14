@@ -39,15 +39,22 @@ copy the block after kubeconfig into the file ~/.kube/config-aws
 
 I have setup my ```KUBECONFIG``` environment variable to support two config files, so that an additional file is supported
 
-KUBECONFIG=/home/christian/.kube/config:/home/christian/.kube/config-aws
+```KUBECONFIG=/home/christian/.kube/config:/home/christian/.kube/config-aws```
 
 
 Use the new kubeconfig in config-aws with this command
 
+```
 kubectl config use-context aws
+```
 
 apply the configmap file
  
+```
 kubectl apply -f configmap.yml 
+```
 
+Check if the nodes come up 
+```
 kubectl get no --watch
+```
