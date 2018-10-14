@@ -4,14 +4,9 @@ I took  that from  https://github.com/terraform-providers/terraform-provider-aws
 
 This is the full configuration from https://www.terraform.io/docs/providers/aws/guides/eks-getting-started.html
 
-See that guide for additional information.
-
-NOTE: This full configuration utilizes the [Terraform http provider](https://www.terraform.io/docs/providers/http/index.html) to call out to icanhazip.com to determine your local workstation external IP for easily configuring EC2 Security Group access to the Kubernetes master servers. Feel free to replace this as necessary.
 
 
-## Usage
-
-
+## Setup EKS via Terraform
 1. terraform apply
 
 terraformoutputs something like
@@ -72,3 +67,19 @@ The scripts start ```kubectl proxy``` and displays the url and access token to a
 
 
 https://docs.aws.amazon.com/eks/latest/userguide/dashboard-tutorial.html
+
+
+## Create Ingress Controller
+
+
+execute file createNGINXIngressController.sh to install an ingress controller in aws
+
+this creates a new namespace ingress-nginx with a deployment of the image quay.io/kubernetes-ingress-controller/nginx-ingress-controller
+
+```
+./createNGINXIngressController.sh
+```
+
+https://kubernetes.github.io/ingress-nginx/deploy/
+https://github.com/kubernetes/ingress-nginx
+
