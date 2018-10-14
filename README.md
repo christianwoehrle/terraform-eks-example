@@ -83,3 +83,7 @@ this creates a new namespace ingress-nginx with a deployment of the image quay.i
 https://kubernetes.github.io/ingress-nginx/deploy/
 https://github.com/kubernetes/ingress-nginx
 
+
+## Install some services and corresponding ingress
+
+

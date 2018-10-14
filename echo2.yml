@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: echo2
+    tenant: dwpbank
+  name: echo2
+spec:
+  ports:
+  - port: 8041
+    protocol: TCP
+    targetPort: 8080
+    nodePort: 30103
+  selector:
+    app: echo2
+  type: NodePort
+
+  
+---
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: echo2
+  name: echo2
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: echo2
+  template:
+    metadata:
+      labels:
+        app: echo2
+    spec:
+      containers:
+      - args:
+        - -listen=:8080
+        - -text=hello world2
+        image: hashicorp/http-echo
+        name: echo2
+        resources: {}
+        ports:
+         - containerPort: 8080

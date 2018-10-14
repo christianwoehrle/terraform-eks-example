@@ -1,0 +1,65 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: echo3
+    tenant: dwpbank
+  name: echo3
+spec:
+  ports:
+  - port: 8042
+    protocol: TCP
+    targetPort: 8080
+    nodePort: 30104
+  selector:
+    app: echo3
+  type: NodePort
+
+  
+---
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: echo3
+  name: echo3
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: echo3
+  template:
+    metadata:
+      labels:
+        app: echo3
+    spec:
+      containers:
+      - args:
+        - -listen=:8080
+        - -text=hello echo3
+        image: hashicorp/http-echo
+        name: echo3
+        resources: {}
+        ports:
+         - containerPort: 8080
+
+
+---
+
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: echo3
+spec:
+  backend:
+    serviceName: other
+    servicePort: 8080
+  rules:
+  - http:
+      paths:
+      - path: /echo3/
+        backend:
+          serviceName: echo3
+          servicePort: 8042
+
