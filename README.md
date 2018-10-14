@@ -58,3 +58,17 @@ Check if the nodes come up
 ```
 kubectl get no --watch
 ```
+
+
+## Create Kubernetes Dashboard
+
+
+execute file createDashboard.sh to deploy the dashboard, heapster and the necessary influx.
+The scripts start ```kubectl proxy``` and displays the url and access token to access the dashboard
+
+```
+./createDashboard.sh
+```
+
+
+https://docs.aws.amazon.com/eks/latest/userguide/dashboard-tutorial.html
