@@ -74,16 +74,29 @@ https://docs.aws.amazon.com/eks/latest/userguide/dashboard-tutorial.html
 
 execute file createNGINXIngressController.sh to install an ingress controller in aws
 
-this creates a new namespace ingress-nginx with a deployment of the image quay.io/kubernetes-ingress-controller/nginx-ingress-controller
+this creates a new namespace ingress-nginx with a deployment of the image quay.io/kubernetes-ingress-controller/nginx-ingress-controller. the ingress controller automatically creates an aws load balancer for external access
 
 ```
 ./createNGINXIngressController.sh
 ```
 
 https://kubernetes.github.io/ingress-nginx/deploy/
+
 https://github.com/kubernetes/ingress-nginx
 
 
-## Install some services and corresponding ingress
+## Install some services and corresponding ingresses
 
+I experimenting with services and ingress, this is just some wip to see how I can deploy and access services
 
+This is with an ingrewss for sveral services
+
+```
+kubectl apply -f echo1.yml echo2.yml ingress_echo1-2.yml 
+```
+
+And thats for a service with a dedicated ingress resource. looks like everything works together.
+
+```
+kubectl apply -f echo3withIngress.yml 
+```
