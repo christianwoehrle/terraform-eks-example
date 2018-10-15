@@ -92,7 +92,7 @@ I experimenting with services and ingress, this is just some wip to see how I ca
 This is with an ingrewss for sveral services
 
 ```
-kubectl apply -f echo1.yml echo2.yml ingress_echo1-2.yml 
+kubectl apply -f echo1.yml -f echo2.yml -f ingress_echo1-2.yml 
 ```
 
 And thats for a service with a dedicated ingress resource. looks like everything works together.
