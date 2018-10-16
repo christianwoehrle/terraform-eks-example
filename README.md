@@ -87,7 +87,7 @@ https://github.com/kubernetes/ingress-nginx
 
 ## Install some services and corresponding ingresses
 
-I experimenting with services and ingress, this is just some wip to see how I can deploy and access services
+I`m experimenting with services and ingress, this is just some wip to see how I can deploy and access services
 
 This is with an ingrewss for sveral services
 
@@ -95,8 +95,11 @@ This is with an ingrewss for sveral services
 kubectl apply -f echo1.yml -f echo2.yml -f ingress_echo1-2.yml 
 ```
 
-And thats for a service with a dedicated ingress resource. looks like everything works together.
+And this command is for a service with a dedicated ingress resource.
 
 ```
 kubectl apply -f echo3withIngress.yml 
 ```
+
+Looks like everything works together.
+
