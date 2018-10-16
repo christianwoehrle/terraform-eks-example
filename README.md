@@ -103,3 +103,25 @@ kubectl apply -f echo3withIngress.yml
 
 Looks like everything works together.
 
+## More than one Ingress Controller
+
+You can have more than one ingress controllers, e.g. when you want have ingresses mapped to internal and external loadbalancers.
+
+To do that, first create an internal load balancer with
+
+```
+kubectl apply -f internal-lb.yml
+```
+
+The trick is the annotation ``` service.beta.kubernetes.io/aws-load-balancer-internal: 0.0.0.0/0 ``` that tells aws to create an internal loadbalancer.
+
+Then create a new Ingress Controller with
+```
+kubectl apply  -f nginx-controller-deployment.yml
+```
+
+The argument ``` --ingress-class=ingress-nginx-internal ``` tells the ingress controller that it should only treat ingresses that specify
+
+``` kubernetes.io/ingress.class: "nginx-internal" ```
+
+

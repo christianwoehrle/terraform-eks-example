@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{"service.beta.kubernetes.io/aws-load-balancer-connection-idle-timeout":"60","service.beta.kubernetes.io/aws-load-balancer-proxy-protocol":"*"},"labels":{"app.kubernetes.io/name":"ingress-nginx","app.kubernetes.io/part-of":"ingress-nginx"},"name":"ingress-nginx","namespace":"ingress-nginx"},"spec":{"ports":[{"name":"http","port":80,"targetPort":"http"},{"name":"https","port":443,"targetPort":"https"}],"selector":{"app.kubernetes.io/name":"ingress-nginx","app.kubernetes.io/part-of":"ingress-nginx"},"type":"LoadBalancer"}}
+    service.beta.kubernetes.io/aws-load-balancer-connection-idle-timeout: "60"
+    service.beta.kubernetes.io/aws-load-balancer-proxy-protocol: '*'
+    service.beta.kubernetes.io/aws-load-balancer-internal: 0.0.0.0/0
+  labels:
+    app.kubernetes.io/name: ingress-nginx-internal
+  name: ingress-nginx-internal
+  namespace: ingress-nginx
+spec:
+#  clusterIP: 172.20.134.147
+  externalTrafficPolicy: Cluster
+  ports:
+  - name: http
+#    nodePort: 30455
+    port: 80
+    protocol: TCP
+    targetPort: http
+  - name: https
+#    nodePort: 30139
+    port: 443
+    protocol: TCP
+    targetPort: https
+  selector:
+    app.kubernetes.io/name: ingress-nginx
+    app.kubernetes.io/part-of: ingress-nginx
+  sessionAffinity: None
+  type: LoadBalancer
