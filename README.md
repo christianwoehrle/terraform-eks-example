@@ -124,4 +124,5 @@ The argument ``` --ingress-class=ingress-nginx-internal ``` tells the ingress co
 
 ``` kubernetes.io/ingress.class: "nginx-internal" ```
 
+https://docs.giantswarm.io/guides/services-of-type-loadbalancer-and-multiple-ingress-controllers/
 
