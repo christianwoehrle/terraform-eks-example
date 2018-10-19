@@ -86,6 +86,20 @@ resource "aws_security_group_rule" "demo-node-ingress-cluster" {
   type                     = "ingress"
 }
 
+
+# uncomment if ssh access to the nodes is required
+
+#resource "aws_security_group_rule" "demo-node-ingress-workstation-ssh" {
+#  cidr_blocks       = ["${local.workstation-external-cidr}"]
+#  description       = "Allow workstation to communicate with the Nodes"
+#  from_port         = 22
+#  protocol          = "tcp"
+#  security_group_id = "${aws_security_group.demo-node.id}"
+#  to_port           = 22
+#  type              = "ingress"
+#}
+
+
 data "aws_ami" "eks-worker" {
   filter {
     name   = "name"
@@ -109,6 +123,12 @@ set -o xtrace
 USERDATA
 }
 
+
+resource "aws_key_pair" "chrissis-xps-key" {
+  key_name   = "deployer-key"
+  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDnOMTrBtmi4JwheVLKPi3V7DZyaxgXXYR/GhBrgvwpawOwCggjz3uPlXKkwssKZpCj9FE7W66M1L2EvUinth1uHU6lAgw/qP3mfnrSHRpBE0MjgncztZ5GCSNeZ2et/L5r0eOCipL4y7L4RNjU3QmIIKbZCnuxQjD8p4crL12q7LzeUvQKiG6GJM/QwbpWv0gHeZg86fMcDZQTYojUijflA4BGfScpZZ20B9xamc6Av76kMKO06wQM1C+3V9Gx/tEO+az2qQp0ckmy9Qp1ivM3DgtMiXFs/d6nFJ+t1318xauigBwaa8SexchBdRS8npul9CnxmFSF+uCaU7sxDZn8tbK/dUARFoxiUz8Njsd5y5A0fVoekMrG8Lj36CdSqGsDKJVQRBENQqVSgMXf1vfYlo3eWpAhu1ZnRcad3wPtgzJi2XE3ixWObhTiWyC2/7WWT+dTMIomiplYTQgbwhS94EQhXVqpQ1N65XMnbMug7XkbGfE/OuII/4vmyFVc6Q2Z51VYggwK81t0J8oXQsoHnwMR5jx+jJhRH7hQmUZua785Xcj21kHGMfcHTHeoKaC3QdpGStb/gYQQQj5w4Cwyzn22tsGOZBl1ylkiajtvedkaVyP+D5h9SI3KzKdTI6BxL+wQVdXbJQU7qGzy+ybLkb3suilCn0HNAmalJyPozw== christian.woehrle@googlemail.com"
+}
+
 resource "aws_launch_configuration" "demo" {
   associate_public_ip_address = true
   iam_instance_profile        = "${aws_iam_instance_profile.demo-node.name}"
@@ -117,6 +137,9 @@ resource "aws_launch_configuration" "demo" {
   name_prefix                 = "terraform-eks-demo"
   security_groups             = ["${aws_security_group.demo-node.id}"]
   user_data_base64            = "${base64encode(local.demo-node-userdata)}"
+  ## add key here
+  key_name                    = "${aws_key_pair.chrissis-xps-key.id}"
+  spot_price                  = "0.04"
 
   lifecycle {
     create_before_destroy = true
