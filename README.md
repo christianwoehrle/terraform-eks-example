@@ -126,3 +126,45 @@ The argument ``` --ingress-class=ingress-nginx-internal ``` tells the ingress co
 
 https://docs.giantswarm.io/guides/services-of-type-loadbalancer-and-multiple-ingress-controllers/
 
+
+## Helm
+
+INstall Helm
+https://github.com/helm/helm/releases
+
+kubectl create clusterrolebinding add-on-cluster-admin --clusterrole=cluster-admin --serviceaccount=kube-system:default
+helm ls
+helm install stable/mysql
+
+##storage
+EKSnsupports EBS out of the box. To create a default storage class execute
+
+```
+cd storage
+kubectl apply -f storageclass.yml -f storageclass_cheap.yml
+```
+
+after that new pv's and pvc's can be create with the command
+```
+
+```
+
+
+https://docs.giantswarm.io/guides/using-persistent-volumes-on-aws/
+
+
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html
+
+https://docs.aws.amazon.com/eks/latest/userguide/storage-classes.html
+
+
+
+### efs
+
+https://github.com/kubernetes-incubator/external-storage/tree/master/aws/efs
+
+## filebeat
+see https://github.com/elastic/beats/tree/master/deploy/kubernetes/filebeat
+
+
+
