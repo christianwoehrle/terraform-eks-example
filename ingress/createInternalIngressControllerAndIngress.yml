@@ -1,0 +1,16 @@
+echo "create internal loadbalancer (no internet gateway attached)"
+kubectl apply -f kubectl apply -f internal-lb.yml
+
+echo "create new ingress controller that uses the internal loadbalancer"
+kubectl apply -f nginx-controller-deployment.yml
+
+echo "create internal ingress"
+
+kubectl apply -f echo4InternalIngress.yml
+
+echo "check what is created"
+
+kubectl get ingress
+
+
+

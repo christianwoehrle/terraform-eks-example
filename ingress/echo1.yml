@@ -41,5 +41,3 @@ spec:
         image: hashicorp/http-echo
         name: echo1
         resources: {}
-        ports:
-         - containerPort: 8080
