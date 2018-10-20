@@ -146,6 +146,9 @@ kubectl apply -f storageclass.yml -f storageclass_cheap.yml
 
 after that new pv's and pvc's can be create with the command
 ```
+kubectl apply -f pvc.yml 
+kubectl get pvc --watch
+kubectl get pc --watch
 
 ```
 
