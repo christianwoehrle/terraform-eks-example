@@ -152,6 +152,21 @@ kubectl get pc --watch
 
 ```
 
+and mount this pv into a new container:
+
+```
+kubectl apply -f pod.yml 
+```
+
+```
+myserver: kubectl exec -it mypod bash
+root@mypod:/# mount | grep /var/www/html
+/dev/xvdbd on /var/www/html type ext4 (rw,relatime,debug,data=ordered)
+root@mypod:/# root@mypod:/# df -h | grep /var/www/html
+/dev/xvdbd      5.8G   24M  5.5G   1% /var/www/html
+root@mypod:/# 
+
+```
 
 https://docs.giantswarm.io/guides/using-persistent-volumes-on-aws/
 
