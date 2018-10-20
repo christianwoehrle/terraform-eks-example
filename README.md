@@ -71,6 +71,7 @@ https://docs.aws.amazon.com/eks/latest/userguide/dashboard-tutorial.html
 
 ## Create Ingress Controller
 
+cd ingress
 
 execute file createNGINXIngressController.sh to install an ingress controller in aws
 
@@ -124,6 +125,21 @@ The argument ``` --ingress-class=ingress-nginx-internal ``` tells the ingress co
 
 ``` kubernetes.io/ingress.class: "nginx-internal" ```
 
+
+Now, deploy an internal ingres with
+```
+kubectl apply -f echo4InternalIngress.yml 
+
+```
+and you should see the external loadBalancer echo3 as well as the internal loadBalancer
+
+```
+kubectl get ingress
+NAME      HOSTS     ADDRESS                                                                   PORTS     AGE
+echo3     *         aa9133a67d45411e8b9e902cc5740c06-1837280603.eu-west-1.elb.amazonaws.com   80        4m
+echo4     *                                                                                   80        55s
+```
+
 https://docs.giantswarm.io/guides/services-of-type-loadbalancer-and-multiple-ingress-controllers/
 
 
@@ -168,7 +184,10 @@ root@mypod:/#
 
 ```
 
-https://docs.giantswarm.io/guides/using-persistent-volumes-on-aws/
+everything taken fro here: https://docs.giantswarm.io/guides/using-persistent-volumes-on-aws/
+
+
+
 
 
 https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html
@@ -180,6 +199,8 @@ https://docs.aws.amazon.com/eks/latest/userguide/storage-classes.html
 ### efs
 
 https://github.com/kubernetes-incubator/external-storage/tree/master/aws/efs
+
+
 
 ## filebeat
 see https://github.com/elastic/beats/tree/master/deploy/kubernetes/filebeat
