@@ -202,6 +202,13 @@ https://github.com/kubernetes-incubator/external-storage/tree/master/aws/efs
 
 
 
+## helm
+
+helm init
+
+
+
+
 ## filebeat
 see https://github.com/elastic/beats/tree/master/deploy/kubernetes/filebeat
 
