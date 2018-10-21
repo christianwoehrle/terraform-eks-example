@@ -6,8 +6,9 @@ echo "determine the dns of the internet loadbalancer for the ingresses"
 echo "kubectl get ingress | grep my-ingress | gawk '{print $3}'"
 LB=$(kubectl get ingress | grep my-ingress | gawk '{print $3}')
 
-echo "Try http://$LB/foo/"
-echo "Try http://$LB/bar/"
+
+echo "Try curl -k https://$LB/foo/"
+echo "Try curl -k https://$LB/bar/"
 
 
 
