@@ -37,7 +37,7 @@ spec:
       containers:
       - args:
         - -listen=:8080
-        - -text=hello world2
+        - -text=echo2
         image: hashicorp/http-echo
         name: echo2
         resources: {}
