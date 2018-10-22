@@ -7,8 +7,8 @@ echo "kubectl get ingress | grep my-ingress | gawk '{print $3}'"
 LB=$(kubectl get ingress | grep my-ingress | gawk '{print $3}')
 
 
-echo "Try curl -k https://$LB/foo/"
-echo "Try curl -k https://$LB/bar/"
+echo "Try curl -k https://$LB/echo1/"
+echo "Try curl -k https://$LB/echo2/"
 
 
 
