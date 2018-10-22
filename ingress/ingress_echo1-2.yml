@@ -15,13 +15,13 @@ spec:
 #          servicePort: 8080
   - http:
       paths:
-      - path: /bar/
+      - path: /echo1/
         backend:
           serviceName: echo1
           servicePort: 8040
   - http:
       paths:
-      - path: /foo/
+      - path: /echo2/
         backend:
           serviceName: echo2
           servicePort: 8041
