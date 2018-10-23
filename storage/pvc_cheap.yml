@@ -1,12 +1,12 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: myclaim
+  name: myclaimcheap
 spec:
   accessModes:
     - ReadWriteOnce
   volumeMode: Filesystem
-  storageClassName: gp2
+  storageClassName: cheap
   resources:
     requests:
-      storage: 6Gi
+      storage: 501Gi

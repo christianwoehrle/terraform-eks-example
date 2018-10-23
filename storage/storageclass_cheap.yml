@@ -5,6 +5,6 @@ metadata:
 provisioner: kubernetes.io/aws-ebs
 parameters:
   type: sc1
-reclaimPolicy: Delete
+reclaimPolicy: Retain
 mountOptions:
   - debug
