@@ -209,8 +209,16 @@ helm init
 
 
 
-## filebeat
-see https://github.com/elastic/beats/tree/master/deploy/kubernetes/filebeat
+## filebeat, elastic
+
+see https://github.com/elastic/beats/tree/master/deploy/kubernetes
+
+and https://github.com/elastic/beats/blob/master/deploy/kubernetes/filebeat-kubernetes.yaml
+
+```
+cd filebeat
+kubectl apply -f filebeat-kubernetes.yaml
+```
 
 
 
