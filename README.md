@@ -214,6 +214,13 @@ kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admi
 kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'
 ```
 
+```
+helm repo add incubator http://storage.googleapis.com/kubernetes-charts-incubator
+
+helm list
+helm delete ...
+```
+
 
 
 ## filebeat, elastic
@@ -226,6 +233,8 @@ and https://github.com/elastic/beats/blob/master/deploy/kubernetes/filebeat-kube
 cd filebeat
 kubectl apply -f filebeat-kubernetes.yaml
 ```
+
+Before installating elasticsearch, install a storage class (see storage)
 
 ```
 helm install stable/elasticsearch
