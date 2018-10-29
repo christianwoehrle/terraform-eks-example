@@ -57,3 +57,8 @@ output "config_map_aws_auth" {
 output "kubeconfig" {
   value = "${local.kubeconfig}"
 }
+
+
+output "ecr" {
+  value = "${aws_ecr_repository.openjobs_app.repository_url}"
+}
