@@ -85,3 +85,9 @@ resource "aws_eks_cluster" "demo" {
     "aws_iam_role_policy_attachment.demo-cluster-AmazonEKSServicePolicy",
   ]
 }
+
+# this is an ecr for a hardcoded image heimdall, every other image need an additional resource
+resource "aws_ecr_repository" "openjobs_app" {
+  name = "heimdall"
+}
+
