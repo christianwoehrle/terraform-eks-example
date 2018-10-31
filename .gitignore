@@ -3,3 +3,4 @@ secrets.tf
 .terraform/
 terraform.tfstate*
 configmap.yml
+heimdall.tar
